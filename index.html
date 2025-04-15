@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Analyzer by Rajat Balda</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    textarea { width: 100%; height: 150px; margin-bottom: 10px; }
+    button { padding: 10px 20px; }
+    .results p { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <h1>Text Analyzer by Rajat Balda</h1>
+  <textarea id="text-input" placeholder="Paste your text here..."></textarea>
+  <br>
+  <button onclick="analyzeText()">Analyze</button>
+  <div class="results" id="results"></div>
+
+  <script>
+    function analyzeText() {
+      const text = document.getElementById("text-input").value;
+      const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
+      const charCount = text.replace(/\s/g, '').length;
+      const sentenceCount = text.split(/[.!?]+/).filter(s => s.trim()).length;
+
+      document.getElementById("results").innerHTML = `
+        <p><strong>Words:</strong> ${wordCount}</p>
+        <p><strong>Characters (no spaces):</strong> ${charCount}</p>
+        <p><strong>Sentences:</strong> ${sentenceCount}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
